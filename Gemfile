@@ -10,6 +10,8 @@ gem 'rails', '~> 7.0.2', '>= 7.0.2.4'
 gem 'sprockets-rails'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
+gem 'react-rails'
+gem 'webpacker'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
