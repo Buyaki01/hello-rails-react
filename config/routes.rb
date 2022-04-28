@@ -3,4 +3,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  namespace :v1, default: { format: 'json'} do
+    get 'greetings' => 'greetings#index'
+  end
+
+  get '*page', to: 'static#index', constraints: ->(req) do
+    !req.xhr? && req.format.html?
+  end
+
+  root 'static#index'
 end

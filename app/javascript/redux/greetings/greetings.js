@@ -4,21 +4,15 @@ const GET_GREETING = 'GET_GREETING';
 
 const initialState = [];
 
-export const getGreeting = (data) => ({
+export const getGreeting = (payload) => ({
   type: GET_GREETING,
-  payload: data,
+  payload,
 });
 
-const returnGreeting = async () => {
-  const greeting = await Axios.get('/v1/greetings');
-  return greeting;
-}
-
-export const fetchGreeting = async (dispatch) => {
-  const data = await returnGreeting()
-  const greeting = data.data.data.greeting.message
-  console.log(greeting)
-  dispatch(getGreeting(greeting));
+export const fetchGreeting = () => async (dispatch) => {
+  const returnGreeting = await Axios.get('/v1/greetings');
+  const data = returnGreeting.data.data.greeting.message
+  dispatch(getGreeting(data));
 }
 
 const reducer = (state = initialState, action) => {
